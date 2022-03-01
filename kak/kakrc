@@ -1,0 +1,29 @@
+eval %sh{kak-lsp --kakoune -s $kak_session}  # Not needed if you load it with plug.kak.
+hook global WinSetOption filetype=(typescript|javascript|python) %{
+    lsp-enable-window
+    set window lsp_hover_anchor true
+
+    map window user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
+
+    hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+    hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+    hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+    hook -once -always window WinSetOption filetype=.* %{
+        remove-hooks window semantic-tokens
+    }
+}
+
+# Line numbers.
+add-highlighter global/ number-lines -hlcursor -relative -separator " "
+
+# Highlight matching
+add-highlighter global/ show-matching
+
+map global insert <c-[> <esc>
+map global insert <c-m> <ret>
+map global prompt <c-[> <esc>
+map global prompt <c-m> <ret>
+
+set -add global autoinfo normal
+
+colorscheme solarized-dark-termcolors

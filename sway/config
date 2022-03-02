@@ -34,7 +34,7 @@ set {
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output LVDS-1 bg $HOME/pix/lain.jpg fill
+output * bg $HOME/pix/wall.jpg fill
 #
 # Example configuration:
 #
@@ -251,7 +251,7 @@ title_align center
 mouse_warping container
 
 client.focused $blue $blue $base03 $green $blue 
-client.focused_inactive $violet $violet $base03 $green $violet 
+client.focused_inactive $base02 $base02 $base1 $green $base02 
 client.unfocused $base02 $base02 $base1 $green $base02 
 
 include /etc/sway/config.d/*

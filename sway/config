@@ -4,7 +4,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-font pango: Terminus 12
+font pango: Terminus 8
 
 ### Variables
 #
@@ -28,13 +28,13 @@ set {
     # Your preferred application launcher
     # Note: pass the final command to swaymsg so that the resulting window can be opened
     # on the original workspace that the command was run on.
-    $menu fuzzel -f Terminus:size=14 -b 002b36dd -t 839496ff -s 073642dd -S 93a1a1ff -i Papirus
+    $menu fuzzel -f Terminus:size=14 -T $term -x 30 -y 30 -b 002b36dd -t 839496ff -s 073642dd -S 93a1a1ff -B 0 -r 0 -C 268bd2ff 
 }
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output LVDS-1 bg $HOME/pix/lain.jpg fill
+output VGA-1 bg $HOME/pix/sitting.jpg fill
 #
 # Example configuration:
 #
@@ -220,8 +220,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym $mod+g gaps inner all toggle 2; gaps outer all toggle 2
-
 #
 # Status Bar:
 #
@@ -242,9 +240,9 @@ bindsym $mod+g gaps inner all toggle 2; gaps outer all toggle 2
 
 xwayland disable
 
-smart_borders on
+# smart_borders on
 
-default_border pixel 2
+default_border none
 
 title_align center
 
@@ -253,5 +251,7 @@ mouse_warping container
 client.focused $blue $blue $base03 $green $blue 
 client.focused_inactive $violet $violet $base03 $green $violet 
 client.unfocused $base02 $base02 $base1 $green $base02 
+
+exec /usr/share/sway/scripts/inactive-windows-transparency.py --opacity 0.85
 
 include /etc/sway/config.d/*
